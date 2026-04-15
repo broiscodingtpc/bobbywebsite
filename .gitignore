@@ -15,3 +15,14 @@ desktop.ini
 # Env (if added later)
 .env
 .env.*
+
+# One-off MCP / agent payload files (do not commit)
+_batch*.json
+_batch2_raw.txt
+_mcp_push.json
+_push_payload.txt
+_single_line.json
+_single_push.json
+args_create.json
+index_mcp.json
+payload_index_mcp.txt
