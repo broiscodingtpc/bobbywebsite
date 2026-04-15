@@ -1,0 +1,17 @@
+# Local / IDE
+.claude/
+.vscode/
+.idea/
+*.local
+
+# Vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Env (if added later)
+.env
+.env.*
