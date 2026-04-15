@@ -244,7 +244,7 @@ ul { list-style: none; }
 }
 .hero__actions {
   display: flex;
-  gap: var(--space-s);
+  gap: 0.625rem;
   justify-content: center;
   flex-wrap: wrap;
   opacity: 0;
@@ -256,18 +256,42 @@ ul { list-style: none; }
   margin-right: auto;
 }
 .hero__phone-btn {
-  flex: 1 1 12rem;
-  justify-content: center;
-  min-height: 3.25rem;
-  padding: 0.85em 1.25em;
-  border-radius: 2px;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+  flex: 1 1 10.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 0;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .hero__phone-btn:hover {
-  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
 }
 .hero__phone-icon {
   flex-shrink: 0;
+  opacity: 0.95;
+}
+.hero__phone-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.1rem;
+  text-align: left;
+  line-height: 1.15;
+}
+.hero__phone-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.88;
+}
+.hero__phone-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.05rem, 2.8vw, 1.35rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
 }
 
 /* Buttons */
@@ -278,7 +302,7 @@ ul { list-style: none; }
   font-size: var(--step-0);
   font-weight: 600;
   padding: 0.9em 2em;
-  transition: all 0.3s;
+  transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
   cursor: pointer;
   border: none;
   font-family: inherit;
@@ -287,7 +311,14 @@ ul { list-style: none; }
   background: var(--red);
   color: var(--white);
 }
-.btn--primary:hover { background: var(--red-dark); transform: translateY(-2px); }
+.btn--primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+/* Compact phone CTAs (hero + consistent tap targets) */
+.btn--phone {
+  font-size: inherit;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
 
 /* Scroll indicator */
 .hero__scroll {
@@ -361,7 +392,7 @@ ul { list-style: none; }
 }
 .services__grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-m);
 }
 .service-card {
@@ -551,31 +582,37 @@ ul { list-style: none; }
 .contact__phone {
   display: flex;
   align-items: center;
-  gap: var(--space-m);
-  padding: var(--space-m) var(--space-l);
+  gap: var(--space-s);
+  padding: 0.85rem 1.1rem;
   border: 1px solid var(--grey-200);
-  transition: all 0.3s;
+  border-radius: 8px;
+  background: var(--white);
+  transition: border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 .contact__phone:hover {
   border-color: var(--red);
-  transform: translateX(8px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  transform: translateX(4px);
 }
 .contact__phone svg {
   color: var(--red);
   flex-shrink: 0;
+  width: 28px;
+  height: 28px;
 }
 .contact__phone-label {
   display: block;
-  font-size: var(--step--1);
+  font-size: 0.7rem;
   color: var(--grey-400);
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 500;
+  letter-spacing: 0.12em;
+  font-weight: 600;
 }
 .contact__phone-number {
   display: block;
   font-family: 'Bebas Neue', sans-serif;
-  font-size: var(--step-3);
+  font-size: clamp(1.35rem, 1.1rem + 1.2vw, 1.75rem);
   letter-spacing: 0.03em;
   line-height: 1.2;
   color: var(--red);
@@ -657,7 +694,14 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   .nav__links,
   .nav__cta { display: none; }
-  .nav__burger { display: block; }
+  .nav__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -0.4rem;
+  }
 
   /* Mobile menu */
   .nav__links--open {
@@ -665,17 +709,20 @@ ul { list-style: none; }
     flex-direction: column;
     position: fixed;
     inset: 0;
-    background: var(--black);
+    padding: max(5rem, env(safe-area-inset-top)) 1.5rem calc(2rem + env(safe-area-inset-bottom));
+    background: linear-gradient(165deg, #0a0a0a 0%, #0f0f0f 45%, #0a0a0a 100%);
     align-items: center;
     justify-content: center;
-    gap: var(--space-xl);
+    gap: var(--space-l);
     z-index: 999;
   }
   .nav__links--open a {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: var(--step-4);
+    font-size: clamp(3rem, 11vw, 4.4rem);
     color: var(--white) !important;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
+    line-height: 1.05;
+    padding: 0.25rem 0;
   }
   .nav__links--open a::after { display: none; }
 
@@ -691,10 +738,60 @@ ul { list-style: none; }
   .footer__inner { grid-template-columns: 1fr; gap: var(--space-l); }
 
   .hero__scroll { display: none; }
+
+  .hero__actions {
+    max-width: 100%;
+    padding: 0 0.25rem;
+    gap: 0.5rem;
+  }
+  .hero__phone-btn {
+    flex: 1 1 calc(50% - 0.35rem);
+    max-width: calc(50% - 0.35rem);
+    padding: 0.45rem 0.65rem;
+    justify-content: center;
+    border-radius: 8px;
+  }
+  .hero__phone-icon {
+    width: 16px;
+    height: 16px;
+  }
+  .hero__phone-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+  }
+  .hero__phone-num {
+    font-size: clamp(0.92rem, 3.8vw, 1.05rem);
+  }
 }
 
 @media (max-width: 480px) {
-  .hero__actions { flex-direction: column; align-items: center; }
-  .btn { width: 100%; justify-content: center; }
-  .contact__phone { padding: var(--space-s); }
+  .hero__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .hero__phone-btn {
+    flex: 1 1 calc(50% - 0.35rem);
+    max-width: calc(50% - 0.35rem);
+    min-width: 0;
+    padding: 0.42rem 0.55rem;
+    gap: 0.4rem;
+  }
+  .hero__phone-text {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  .contact__phone {
+    padding: 0.7rem 0.85rem;
+    gap: 0.65rem;
+  }
+  .contact__phone svg {
+    width: 24px;
+    height: 24px;
+  }
+  .contact__phone-number {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
 }
